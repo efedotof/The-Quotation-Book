@@ -18,6 +18,7 @@ class ThemeCubit extends Cubit<ThemeState> {
     try {
       emit(ThemeState(bright));
       await _interface.setDarkThemeSelected(bright == Brightness.dark);
+      
     } catch (e) {
       log(e.toString(), name: 'Theme');
     }
