@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_quotation_book/features/tape/cubit/tape_cubit.dart';
 import 'package:the_quotation_book/router/router.dart';
+import 'package:the_quotation_book/store/repository/box_repository.dart';
 import 'package:the_quotation_book/theme/cubit/theme_cubit.dart';
 import 'package:the_quotation_book/theme/repository/theme_repository.dart';
 import 'package:the_quotation_book/theme/theme.dart';
@@ -13,8 +15,12 @@ void main() async {
 
   final themeRepository = ThemeRepository(preferences: prefs);
 
+  final boxRepository = BoxRepository();
+  boxRepository.initHive();
+
   runApp(MultiBlocProvider(providers: [
-    BlocProvider(create: (context) => ThemeCubit(interface: themeRepository))
+    BlocProvider(create: (context) => ThemeCubit(interface: themeRepository)),
+    BlocProvider(create: (context) => TapeCubit(boxRep: boxRepository)),
   ], child: const MyApp()));
 }
 

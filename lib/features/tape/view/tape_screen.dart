@@ -10,48 +10,83 @@ class TapeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => TapeCubit(),
-        child: Scaffold(
-          body: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.05),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 30,
+    return Scaffold(
+      body: SafeArea(
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.05,
                 ),
-                const Search(),
-                const SizedBox(
-                  height: 10,
+                child: const Search(),
+              ),
+            ),
+          ],
+          body: RefreshIndicator(
+            onRefresh: () async {
+              // Trigger the refresh action based on the current refresh type
+              await context.read<TapeCubit>().refreshData();
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.05,
                 ),
-                BlocBuilder<TapeCubit, TapeState>(builder: (context, state) {
-                  if (state is SearchLoading) {
-                    return const Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CircularProgressIndicator(),
-                      ],
+              child: BlocBuilder<TapeCubit, TapeState>(
+                builder: (context, state) {
+                  if (state is QuotationsLoading || state is SearchLoading) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     );
-                  } else if (state is SearchInitial || state is SearchSuccess) {
-                    return Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:
-                              List.generate(100, (_) => const CardQuotation()),
-                        ),
+                  } else if (state is QuotationsLoaded) {
+                    return ListView(
+                      children: state.results
+                          .map((quot) => CardQuotation(
+                                author: quot.author,
+                                text: quot.text,
+                              ))
+                          .toList(),
+                    );
+                  } else if (state is SearchSuccess) {
+                    return ListView(
+                      children: state.results
+                          .map((quot) => CardQuotation(
+                                author: quot.author,
+                                text: quot.text,
+                              ))
+                          .toList(),
+                    );
+                  } else if (state is SearchError) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Center(
+                        child: Text(state.message),
+                      ),
+                    );
+                  } else if (state is QuotationsError) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Center(
+                        child: Text(state.message),
                       ),
                     );
                   } else {
-                    return const SizedBox.shrink();
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Center(
+                        child: Text('No results found'),
+                      ),
+                    );
                   }
-                })
-              ],
+                },
+              ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

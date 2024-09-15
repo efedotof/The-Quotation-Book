@@ -1,19 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_quotation_book/features/tape/cubit/tape_cubit.dart';
 
-class CardQuotation extends StatefulWidget {
-  const CardQuotation({super.key});
+class CardQuotation extends StatelessWidget {
+  final String author;
+  final String text;
 
-  @override
-  State<CardQuotation> createState() => _CardQuotationState();
-}
+  const CardQuotation({super.key, required this.author, required this.text});
 
-class _CardQuotationState extends State<CardQuotation> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () => log('favorit', name: 'favorit'), //add favorit
+      onDoubleTap: () => context.read<TapeCubit>().quotSave(author, text),
       child: Card(
         elevation: 3.9,
         color: Colors.grey,
@@ -21,13 +19,12 @@ class _CardQuotationState extends State<CardQuotation> {
           width: MediaQuery.of(context).size.width * 0.9,
           child: Container(
             padding: const EdgeInsets.all(20),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text('Author'),
-                Text('Center text'),
-                Text('Date'),
+                Text(author),
+                Text(text),
               ],
             ),
           ),
