@@ -1,29 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'quote.dart';
+part of 'save_quote.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class QuoteAdapter extends TypeAdapter<Quote> {
+class SaveQuoteAdapter extends TypeAdapter<SaveQuote> {
   @override
   final int typeId = 0;
 
   @override
-  Quote read(BinaryReader reader) {
+  SaveQuote read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Quote(
+    return SaveQuote(
       author: fields[0] as String,
       text: fields[1] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Quote obj) {
+  void write(BinaryWriter writer, SaveQuote obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
@@ -38,7 +38,7 @@ class QuoteAdapter extends TypeAdapter<Quote> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is QuoteAdapter &&
+      other is SaveQuoteAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

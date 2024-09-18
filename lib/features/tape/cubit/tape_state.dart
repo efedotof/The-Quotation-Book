@@ -1,52 +1,25 @@
 part of 'tape_cubit.dart';
 
-sealed class TapeState extends Equatable {
-  const TapeState();
 
-  @override
-  List<Object> get props => [];
+
+@freezed 
+class TapeState with _$TapeState{
+  const factory TapeState.init() = _TapeInitial;
+  const factory TapeState.quotationsLoading() = _QuotationsLoading;
+  const factory TapeState.quotationsLoaded({required List<Quote> results})  = _QuotationsLoaded;
+  const factory TapeState.quotationsError({required String message})  = _QuotationsError;
+  const factory TapeState.searchLoading()  = _SearchLoading;
+  const factory TapeState.searchSuccess({required List<Quote> results, required String query})  = _SearchSuccess;
+  const factory TapeState.searchError({required String message})  = _SearchError;
 }
 
-class TapeInitial extends TapeState {}
 
-class QuotationsLoading extends TapeState {}
 
-class QuotationsLoaded extends TapeState {
-  final List<Quot> results;
+// sealed class TapeState extends Equatable {
+//   const TapeState();
 
-  const QuotationsLoaded({required this.results});
+//   @override
+//   List<Object> get props => [];
+// }
 
-  @override
-  List<Object> get props => [results];
-}
-
-class QuotationsError extends TapeState {
-  final String message;
-
-  const QuotationsError({required this.message});
-
-  @override
-  List<Object> get props => [message];
-}
-
-class SearchLoading extends TapeState {}
-
-class SearchSuccess extends TapeState {
-  final List<Quot> results;
-  final String query; // Add this field
-
-  const SearchSuccess({required this.results, required this.query}); // Update the constructor
-
-  @override
-  List<Object> get props => [results, query];
-}
-
-class SearchError extends TapeState {
-  final String message;
-
-  const SearchError({required this.message});
-
-  @override
-  List<Object> get props => [message];
-}
-
+// final class TapeInitial extends TapeState {}

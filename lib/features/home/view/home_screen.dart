@@ -10,9 +10,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsRouter(
       routes: const [
-        TapeRoute(),
-        FavoritRoute(),
-        SettingsRoute(),
+         TapeRoute(),
+         FavoritRoute(),
+         SettingsRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
@@ -24,23 +24,22 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           body: child,
           bottomNavigationBar: BottomNavigationBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: (index) {
-              tabsRouter.setActiveIndex(index);
-            },
-            items: const [
-              BottomNavigationBarItem(
-                  label: 'Tape', icon: Icon(Icons.local_post_office_outlined)),
-              BottomNavigationBarItem(
-                label: 'Favorit',
-                icon: Icon(Icons.favorite_border),
-              ),
-              BottomNavigationBarItem(
-                label: 'Settings',
-                icon: Icon(Icons.settings),
-              ),
-            ],
-          ),
+              currentIndex: tabsRouter.activeIndex,
+              onTap: (index) => tabsRouter.setActiveIndex(index),
+              items: const [
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.local_post_office_outlined),
+                    label: 'Tape'
+                ),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.favorite_border), 
+                    label: 'Favorit'
+                ),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings_outlined),
+                    label: 'Settings'
+                ),
+              ]),
         );
       },
     );

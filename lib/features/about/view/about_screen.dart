@@ -6,8 +6,6 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body:  Center(child: Text('About'),),
-    );
+    return const Placeholder();
   }
 }

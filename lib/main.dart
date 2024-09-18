@@ -8,20 +8,23 @@ import 'package:the_quotation_book/theme/cubit/theme_cubit.dart';
 import 'package:the_quotation_book/theme/repository/theme_repository.dart';
 import 'package:the_quotation_book/theme/theme.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   final prefs = await SharedPreferences.getInstance();
 
   final themeRepository = ThemeRepository(preferences: prefs);
-
   final boxRepository = BoxRepository();
   boxRepository.initHive();
-
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider(create: (context) => ThemeCubit(interface: themeRepository)),
-    BlocProvider(create: (context) => TapeCubit(boxRep: boxRepository)),
-  ], child: const MyApp()));
+  runApp( 
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ThemeCubit(interface: themeRepository)),
+        BlocProvider(create: (context) => TapeCubit(interface: boxRepository))
+      ],
+      child: const MyApp()
+    )
+  );
 }
 
 class MyApp extends StatefulWidget {
