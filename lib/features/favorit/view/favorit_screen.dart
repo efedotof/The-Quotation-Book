@@ -27,7 +27,10 @@ class FavoritScreen extends StatelessWidget {
                     itemCount: quotes.length,
                     itemBuilder: (context, index) {
                       final item = quotes[index];
-                      return CardQuot();
+                      return CardQuot(
+                        author: item.author,
+                        text: item.text,
+                      );
                     });
               })),
     );

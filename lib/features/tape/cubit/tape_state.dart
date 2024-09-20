@@ -12,14 +12,3 @@ class TapeState with _$TapeState{
   const factory TapeState.searchSuccess({required List<Quote> results, required String query})  = _SearchSuccess;
   const factory TapeState.searchError({required String message})  = _SearchError;
 }
-
-
-
-// sealed class TapeState extends Equatable {
-//   const TapeState();
-
-//   @override
-//   List<Object> get props => [];
-// }
-
-// final class TapeInitial extends TapeState {}
