@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_quotation_book/features/settings/cubit/settings_cubit.dart';
+import 'package:the_quotation_book/generated/l10n.dart';
+import 'package:the_quotation_book/router/router.dart';
 import 'package:the_quotation_book/theme/cubit/theme_cubit.dart';
 
 @RoutePage()
@@ -11,7 +14,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(S.of(context).settings),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -25,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
                     child: ListTile(
                       leading: Icon(
                           state.isDark ? Icons.light_mode : Icons.dark_mode),
-                      title: const Text('Theme'),
+                      title: Text(S.of(context).theme),
                       trailing: Switch(
                           value: state.isDark,
                           onChanged: (value) => _setTheme(context, value)),
@@ -36,24 +39,41 @@ class SettingsScreen extends StatelessWidget {
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.notifications_outlined),
-                  title: const Text('Notification'),
-                  onTap: () {},
+                  title: Text(S.of(context).notifications),
+                  onTap: () => context.read<SettingsCubit>().toggleNotifications(),
                 ),
               ),
               Card(
                 child: ListTile(
-                  leading: const Icon(Icons.delete,
-                  color: Colors.red,),
-                  title: const Text('Clear Cash'),
-                  onTap: () {},
+                  leading: const Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                  title:  Text(S.of(context).clearCache),
+                  onTap: () => context.read<SettingsCubit>().clearCache(),
                 ),
               ),
               Card(
                 child: ListTile(
-                  leading: const Icon(Icons.info,
-                  color: Colors.green,),
-                  title: const Text('About'),
-                  onTap: () {},
+                  leading: const Icon(
+                    Icons.language,
+                    color: Colors.orange,
+                  ),
+                  title:  Text(S.of(context).language),
+                  onTap: () => context.read<SettingsCubit>().selectLanguage(context),
+                ),
+              ),
+
+              const SizedBox(height: 30,),
+
+              Card(
+                child: ListTile(
+                  leading: const Icon(
+                    Icons.info,
+                    color: Colors.green,
+                  ),
+                  title:  Text(S.of(context).about),
+                  onTap: () => context.pushRoute(const AboutRoute()),
                 ),
               ),
             ],

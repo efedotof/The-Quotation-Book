@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:the_quotation_book/features/tape/widget/widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_quotation_book/features/favorit/cubit/favorit_cubit.dart';
+import 'package:the_quotation_book/generated/l10n.dart';
 import 'package:the_quotation_book/store/repository/box_repository.dart';
+
+import '../widget/widget.dart';
 
 @RoutePage()
 class FavoritScreen extends StatelessWidget {
@@ -9,30 +13,28 @@ class FavoritScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Favorites'),
-      ),
-      body: Padding(
+    return BlocProvider(
+      create: (context) => FavoritCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(S.of(context).myFavorites),
+        ),
+        body: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.05),
+            horizontal: MediaQuery.of(context).size.width * 0.05,
+          ),
           child: ValueListenableBuilder(
-              valueListenable: BoxRepository().listes(),
-              builder: (context, box, widget) {
-                final quotes = box.values.toList();
-                if (quotes.isEmpty) {
-                  return const Center(child: Text('No favorites yet'));
-                }
-                return ListView.builder(
-                    itemCount: quotes.length,
-                    itemBuilder: (context, index) {
-                      final item = quotes[index];
-                      return CardQuot(
-                        author: item.author,
-                        text: item.text,
-                      );
-                    });
-              })),
+            valueListenable: BoxRepository().listes(),
+            builder: (context, box, widget) {
+              final quotes = box.values.toList();
+              if (quotes.isEmpty) {
+                return const NoFavoritesContainer();
+              }
+              return QuoteList(quotes: quotes);
+            },
+          ),
+        ),
+      ),
     );
   }
 }

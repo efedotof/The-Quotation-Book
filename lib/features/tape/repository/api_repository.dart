@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
-import '../model/quote.dart';
+import '../widget/model/quote.dart';
 
 class ApiRepository {
   final Dio _dio = Dio();
-  final String _baseUrl = 'http//.....:3000';
+  final String _baseUrl = 'http://192.168.31.152:3000';
 
   Future<List<Quote>> fetchAll() async {
     try {
@@ -16,11 +17,12 @@ class ApiRepository {
         throw Exception('Failed to load');
       }
     } catch (e) {
+      debugPrint('fetchAll Error: $e');
       throw Exception('Error occurred: $e');
     }
   }
 
-  Future<List<Quote>> fetchRandom (int count) async {
+  Future<List<Quote>> fetchRandom(int count) async {
     try {
       final response =
           await _dio.get('$_baseUrl/random', queryParameters: {'count': count});
@@ -31,11 +33,12 @@ class ApiRepository {
         throw Exception('Failed to load');
       }
     } catch (e) {
+      debugPrint('fetchRandom Error: $e');
       throw Exception('Error occurred: $e');
     }
   }
 
-  Future<List<Quote>> fetchSearch({String? query, String? category}) async {
+  Future<List<Quote>> fetchSearch({String? query, String? category, required List<String> categories}) async {
     try {
       final response = await _dio.get('$_baseUrl/search', queryParameters: {
         if (query != null && query.isNotEmpty) 'q': query,

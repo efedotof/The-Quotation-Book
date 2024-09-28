@@ -3,71 +3,49 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_quotation_book/features/tape/cubit/tape_cubit.dart';
 
-
 import '../widget/widget.dart';
 
 @RoutePage()
-class TapeScreen extends StatelessWidget {
+class TapeScreen extends StatefulWidget {
   const TapeScreen({super.key});
-  
+
+  @override
+  State<TapeScreen> createState() => _TapeScreenState();
+}
+
+class _TapeScreenState extends State<TapeScreen> {
+  bool isRefreshing = false;
+
+  Future<void> _onRefresh(BuildContext context) async {
+    setState(() {
+      isRefreshing = true;
+    });
+
+    await context.read<TapeCubit>().refreshData();
+
+    setState(() {
+      isRefreshing = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<TapeCubit>().state;
     return Scaffold(
       body: SafeArea(
+        minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.05
-                ), 
-                child: const Search(),
-              ),
-            )
-          ],
-        body: RefreshIndicator(
-          onRefresh: () async{
-            await context.read<TapeCubit>().refreshData();
-          },
-          child: Padding(
-            padding:  EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.05,
+              child: HeaderContent(isRefreshing: isRefreshing),
             ),
-            child: state.when(
-              init: () => const Center(child: SingleChildScrollView(),), 
-              quotationsLoading: () => const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Center(child: CircularProgressIndicator(),),
-              ), 
-              quotationsLoaded: (result) => ListView(
-                children: result.map((quot) => CardQuot(author: quot.author, text: quot.text,)).toList(),
-              ), 
-              quotationsError: (message) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Center(
-                  child: Text(message),
-                ),
-              ), 
-              searchLoading: () => const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Center(child: CircularProgressIndicator(),),
-              ), 
-              searchSuccess: (result, quote) => ListView(
-                children: result.map((quot) => CardQuot(author: quot.author, text: quot.text,)).toList(),
-              ), 
-              searchError: (message) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Center(
-                  child: Text(message),
-                ),
-              ), )
+          ],
+          body: RefreshIndicator(
+            onRefresh: () => _onRefresh(context),
+            child: const BodyContent(),
           ),
         ),
-        ),
-        
       ),
+      endDrawer: const CustomDrawer(),
     );
   }
 }
-

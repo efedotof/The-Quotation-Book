@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:the_quotation_book/theme/repository/theme_interface.dart';
@@ -20,7 +20,7 @@ class ThemeCubit extends Cubit<ThemeState> {
       await _interface.setDarkThemeSelected(bright == Brightness.dark);
       
     } catch (e) {
-      log(e.toString(), name: 'Theme');
+      debugPrint(e.toString());
     }
   }
 
@@ -30,7 +30,7 @@ class ThemeCubit extends Cubit<ThemeState> {
       final bright = _interface.isDarkTheme() ? Brightness.dark : Brightness.light;
       emit(ThemeState(bright));
     } catch (e) {
-      log(e.toString(), name: 'Theme');
+      debugPrint(e.toString());
     }
   }
 

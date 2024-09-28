@@ -67,6 +67,25 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LanguageScreen]
+class LanguageRoute extends PageRouteInfo<void> {
+  const LanguageRoute({List<PageRouteInfo>? children})
+      : super(
+          LanguageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LanguageRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LanguageScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SettingsScreen]
 class SettingsRoute extends PageRouteInfo<void> {
   const SettingsRoute({List<PageRouteInfo>? children})

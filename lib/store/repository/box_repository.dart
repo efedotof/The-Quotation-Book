@@ -1,6 +1,3 @@
-
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:the_quotation_book/store/repository/box_interface.dart';
@@ -31,13 +28,13 @@ class BoxRepository implements BoxInterface {
   @override
   Future<void> initHive() async {
     await Hive.initFlutter();
-    log('>>>>> Hive initialized', name: 'Hive');
+    debugPrint('>>>>> Hive initialized',);
     if(!Hive.isAdapterRegistered(SaveQuoteAdapter().typeId)){
       Hive.registerAdapter(SaveQuoteAdapter());
-      log('>>>>> Hive registrationAdapter', name: 'Hive');
+      debugPrint('>>>>> Hive registrationAdapter',);
     }
     await Hive.openBox<SaveQuote>(boxInitName);
-    log('>>>>> Hive opened', name: 'Hive');
+    debugPrint('>>>>> Hive opened',);
   }
 
   @override
