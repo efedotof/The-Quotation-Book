@@ -36,13 +36,13 @@ class SettingsScreen extends StatelessWidget {
                   );
                 },
               ),
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.notifications_outlined),
-                  title: Text(S.of(context).notifications),
-                  onTap: () => context.read<SettingsCubit>().toggleNotifications(),
-                ),
-              ),
+              // Card(
+              //   child: ListTile(
+              //     leading: const Icon(Icons.notifications_outlined),
+              //     title: Text(S.of(context).notifications),
+              //     onTap: () => context.read<SettingsCubit>().toggleNotifications(context),
+              //   ),
+              // ),
               Card(
                 child: ListTile(
                   leading: const Icon(
@@ -50,7 +50,7 @@ class SettingsScreen extends StatelessWidget {
                     color: Colors.red,
                   ),
                   title:  Text(S.of(context).clearCache),
-                  onTap: () => context.read<SettingsCubit>().clearCache(),
+                  onTap: () => context.read<SettingsCubit>().clearCache(context),
                 ),
               ),
               Card(

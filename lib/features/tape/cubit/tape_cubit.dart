@@ -33,30 +33,28 @@ class TapeCubit extends Cubit<TapeState> {
     }
   }
 
-  Future<void> searchQuote(
-      {String query = '', List<String> categories = const []}) async {
-    final searchCategories =
-        categories.isEmpty ? selectedCategories : categories;
+  Future<void> searchQuote({String query = '', List<String> categories = const []}) async {
+  final searchCategories = categories.isEmpty ? selectedCategories : categories;
 
-    if (query.isEmpty && searchCategories.isEmpty) {
-      loadRandomQuotations();
-      return;
-    }
-
-    emit(const TapeState.searchLoading());
-
-    try {
-      final results =
-          await _api.fetchSearch(query: query, categories: searchCategories);
-      if (results.isEmpty) {
-        emit(const TapeState.searchError(message: 'No results found'));
-      } else {
-        emit(TapeState.searchSuccess(results: results, query: query));
-      }
-    } catch (e) {
-      emit(TapeState.searchError(message: e.toString()));
-    }
+  if (query.isEmpty && searchCategories.isEmpty) {
+    loadRandomQuotations();
+    return;
   }
+
+  emit(const TapeState.searchLoading());
+
+  try {
+    final results = await _api.fetchSearch(query: query, categories: searchCategories);
+    if (results.isEmpty) {
+      emit(const TapeState.searchError(message: 'No results found'));
+    } else {
+      emit(TapeState.searchSuccess(results: results, query: query));
+    }
+  } catch (e) {
+    emit(TapeState.searchError(message: e.toString()));
+  }
+}
+
 
   void toggleCategory(String category) {
     if (selectedCategories.contains(category)) {

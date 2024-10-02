@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aboutTheApp": MessageLookupByLibrary.simpleMessage("О приложении"),
         "age": MessageLookupByLibrary.simpleMessage("возраст"),
         "alone": MessageLookupByLibrary.simpleMessage("одиночество"),
+        "alright": MessageLookupByLibrary.simpleMessage("Хорошо"),
         "amazing": MessageLookupByLibrary.simpleMessage("удивительное"),
         "anger": MessageLookupByLibrary.simpleMessage("гнев"),
         "architecture": MessageLookupByLibrary.simpleMessage("архитектура"),
@@ -42,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "car": MessageLookupByLibrary.simpleMessage("автомобиль"),
         "change": MessageLookupByLibrary.simpleMessage("изменение"),
         "clearCache": MessageLookupByLibrary.simpleMessage("Очистить кэш"),
+        "clearingTheCache":
+            MessageLookupByLibrary.simpleMessage("Очистка кэша"),
         "communication": MessageLookupByLibrary.simpleMessage("коммуникация"),
         "computers": MessageLookupByLibrary.simpleMessage("компьютеры"),
         "cool": MessageLookupByLibrary.simpleMessage("крутое"),
@@ -52,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dating": MessageLookupByLibrary.simpleMessage("знакомства"),
         "death": MessageLookupByLibrary.simpleMessage("смерть"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
+        "deleteAllDataFromTheCache": MessageLookupByLibrary.simpleMessage(
+            "Вы уверены, что хотите удалить все данные из кэша ?"),
         "deleteFavorite":
             MessageLookupByLibrary.simpleMessage("Удалить из избранного"),
         "design": MessageLookupByLibrary.simpleMessage("дизайн"),
@@ -123,11 +128,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "tape": MessageLookupByLibrary.simpleMessage("Лента"),
         "telegramChannel":
             MessageLookupByLibrary.simpleMessage("Telegram канал"),
+        "theFunctionIsNotAvailableYet":
+            MessageLookupByLibrary.simpleMessage("Функция пока недоступна"),
         "theQuoteBookApplicationAllowsYouToSaveAndFind":
             MessageLookupByLibrary.simpleMessage(
                 "Приложение \"Цитатник\" позволяет сохранять и находить вдохновляющие цитаты."),
         "theme": MessageLookupByLibrary.simpleMessage("Тема"),
         "vkCommunity": MessageLookupByLibrary.simpleMessage("VK сообщество"),
+        "waitForTheNextUpdate": MessageLookupByLibrary.simpleMessage(
+            "Ожидайте следующего обновления..."),
         "youtubeChannel": MessageLookupByLibrary.simpleMessage("YouTube канал")
       };
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:the_quotation_book/features/tape/widget/card_quot.dart';
 import 'package:the_quotation_book/generated/l10n.dart';
 import 'package:the_quotation_book/store/repository/box_repository.dart';
 import 'package:the_quotation_book/features/favorit/cubit/favorit_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'card_quot.dart';
 
 
 class QuoteItem extends StatelessWidget {
@@ -60,7 +61,7 @@ class QuoteItem extends StatelessWidget {
             },
           );
         } else if (direction == DismissDirection.startToEnd) {
-          context.read<FavoritCubit>().notificationAdd();
+          context.read<FavoritCubit>().notificationAdd(context);
           debugPrint(">>>>Notification icon pressed");
           return false;
         }

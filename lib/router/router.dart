@@ -3,6 +3,7 @@ import 'package:the_quotation_book/features/about/about.dart';
 import 'package:the_quotation_book/features/favorit/favorit.dart';
 import 'package:the_quotation_book/features/home/home.dart';
 import 'package:the_quotation_book/features/language/language.dart';
+import 'package:the_quotation_book/features/notifications/notifications.dart';
 import 'package:the_quotation_book/features/settings/settings.dart';
 import 'package:the_quotation_book/features/splash/splash.dart';
 import 'package:the_quotation_book/features/tape/tape.dart';
@@ -24,6 +25,7 @@ class AppRouter extends RootStackRouter {
     
     ),
     AutoRoute(page: AboutRoute.page, path: '/about'),
-    AutoRoute(page: LanguageRoute.page, path: '/lan')
+    AutoRoute(page: LanguageRoute.page, path: '/lan'),
+    AutoRoute(page: NotificationRoute.page, path: '/not')
  ];
 }

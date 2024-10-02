@@ -91,9 +91,9 @@ class AboutScreen extends StatelessWidget {
   }
 
   void _launchURL(String urls) async {
-    final Uri _url = Uri.parse(urls);
-    if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
+    final Uri url = Uri.parse(urls);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 }

@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aboutTheApp": MessageLookupByLibrary.simpleMessage("About the app"),
         "age": MessageLookupByLibrary.simpleMessage("age"),
         "alone": MessageLookupByLibrary.simpleMessage("alone"),
+        "alright": MessageLookupByLibrary.simpleMessage("Alright"),
         "amazing": MessageLookupByLibrary.simpleMessage("amazing"),
         "anger": MessageLookupByLibrary.simpleMessage("anger"),
         "architecture": MessageLookupByLibrary.simpleMessage("architecture"),
@@ -42,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "car": MessageLookupByLibrary.simpleMessage("car"),
         "change": MessageLookupByLibrary.simpleMessage("change"),
         "clearCache": MessageLookupByLibrary.simpleMessage("Clear Cache"),
+        "clearingTheCache":
+            MessageLookupByLibrary.simpleMessage("Clearing the cache"),
         "communication": MessageLookupByLibrary.simpleMessage("communication"),
         "computers": MessageLookupByLibrary.simpleMessage("computers"),
         "cool": MessageLookupByLibrary.simpleMessage("cool"),
@@ -52,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dating": MessageLookupByLibrary.simpleMessage("dating"),
         "death": MessageLookupByLibrary.simpleMessage("death"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteAllDataFromTheCache": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete all data from the cache?"),
         "deleteFavorite":
             MessageLookupByLibrary.simpleMessage("Delete Favorite"),
         "design": MessageLookupByLibrary.simpleMessage("design"),
@@ -121,11 +126,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "tape": MessageLookupByLibrary.simpleMessage("Tape"),
         "telegramChannel":
             MessageLookupByLibrary.simpleMessage("Telegram channel"),
+        "theFunctionIsNotAvailableYet": MessageLookupByLibrary.simpleMessage(
+            "The function is not available yet"),
         "theQuoteBookApplicationAllowsYouToSaveAndFind":
             MessageLookupByLibrary.simpleMessage(
                 "The \"Quote Book\" application allows you to save and find inspirational quotes."),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "vkCommunity": MessageLookupByLibrary.simpleMessage("VK community"),
+        "waitForTheNextUpdate":
+            MessageLookupByLibrary.simpleMessage("Wait for the next update..."),
         "youtubeChannel":
             MessageLookupByLibrary.simpleMessage("YouTube channel")
       };

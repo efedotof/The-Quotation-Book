@@ -93,5 +93,10 @@
   "rutubeChannel": "RuTube channel",
   "youtubeChannel": "YouTube channel",
   "vkCommunity": "VK community",
-  "aboutTheApp": "About the app"
+  "aboutTheApp": "About the app",
+  "theFunctionIsNotAvailableYet": "The function is not available yet",
+  "waitForTheNextUpdate": "Wait for the next update...",
+  "clearingTheCache": "Clearing the cache",
+  "deleteAllDataFromTheCache": "Are you sure you want to delete all data from the cache?",
+  "alright": "Alright"
 }

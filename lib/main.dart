@@ -12,7 +12,7 @@ import 'package:the_quotation_book/store/repository/box_repository.dart';
 import 'package:the_quotation_book/theme/cubit/theme_cubit.dart';
 import 'package:the_quotation_book/theme/repository/theme_repository.dart';
 import 'package:the_quotation_book/theme/theme.dart';
-import 'package:the_quotation_book/untils/in_app/in_app_repository.dart';
+import 'package:the_quotation_book/untils/ads/ads_repository.dart';
 import 'generated/l10n.dart';
 
 
@@ -22,8 +22,8 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
   final prefs = await SharedPreferences.getInstance();
-  final inApp = InAppRepository();
-  inApp.init();
+  // final inApp = InAppRepository();
+  // inApp.init();
   final themeRepository = ThemeRepository(preferences: prefs);
   final languageRepository = LanguageRepository(prefs: prefs);
   final boxRepository = BoxRepository();
@@ -43,8 +43,22 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   final _appRouter = AppRouter();
+  final AdsRepository _ads = AdsRepository();
+
+  @override
+  void initState() {
+    super.initState();
+    _ads.initAds();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _ads.didChangeAppLifecycleStates(state);
+  }
+
+
 
   @override
   Widget build(BuildContext context) {

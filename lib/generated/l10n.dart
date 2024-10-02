@@ -999,6 +999,56 @@ class S {
       args: [],
     );
   }
+
+  /// `The function is not available yet`
+  String get theFunctionIsNotAvailableYet {
+    return Intl.message(
+      'The function is not available yet',
+      name: 'theFunctionIsNotAvailableYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wait for the next update...`
+  String get waitForTheNextUpdate {
+    return Intl.message(
+      'Wait for the next update...',
+      name: 'waitForTheNextUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clearing the cache`
+  String get clearingTheCache {
+    return Intl.message(
+      'Clearing the cache',
+      name: 'clearingTheCache',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete all data from the cache?`
+  String get deleteAllDataFromTheCache {
+    return Intl.message(
+      'Are you sure you want to delete all data from the cache?',
+      name: 'deleteAllDataFromTheCache',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alright`
+  String get alright {
+    return Intl.message(
+      'Alright',
+      name: 'alright',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

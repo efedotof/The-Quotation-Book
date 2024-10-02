@@ -93,5 +93,10 @@
   "rutubeChannel": "RuTube канал",
   "youtubeChannel": "YouTube канал",
   "vkCommunity": "VK сообщество",
-  "aboutTheApp": "О приложении"
+  "aboutTheApp": "О приложении",
+  "theFunctionIsNotAvailableYet": "Функция пока недоступна",
+  "waitForTheNextUpdate": "Ожидайте следующего обновления...",
+  "clearingTheCache": "Очистка кэша",
+  "deleteAllDataFromTheCache": "Вы уверены, что хотите удалить все данные из кэша ?",
+  "alright": "Хорошо"
 }
