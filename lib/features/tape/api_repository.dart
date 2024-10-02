@@ -5,7 +5,7 @@ import '../widget/model/quote.dart';
 
 class ApiRepository {
   final Dio _dio = Dio();
-  final String _baseUrl = '';
+  final String _baseUrl = 'http://192.168.31.152:3000';
 
   Future<List<Quote>> fetchAll() async {
     try {
